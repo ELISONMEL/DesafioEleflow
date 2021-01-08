@@ -1,0 +1,8 @@
+CROSS JOIN
+
+Não é algo desejável em uma operação de JOIN, e pode causar problemas de performance se ele ocorrer de forma não desejada
+Imagine duas tabelas com 1000 linhas cada, o resultado do cross join seria um milhão de registros  (1.000 x 1.000)
+
+FULL OUTER JOIN
+
+Este tambem traz um grande conjunto de dados, que pode causar um grande esforço computacional. pois traz muitos dados ate sem correspondencia
