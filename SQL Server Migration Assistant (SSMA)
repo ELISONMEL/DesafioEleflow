@@ -1,0 +1,79 @@
+RESPOSTAS AO DESAFIO DA ELEFLOW
+
+Instale o SSMA para Oracle
+
+Instale em uma máquina Windows com acesso de rede às instâncias Oracle.
+Quando o destino é SQL Server On-Prem ou IaaS, além de instalar o SSMA, 
+o SSMA Extension pack precisa ser instalado no computador que está executando o SQL Server
+
+Quando o destino é SQL Server On-Prem ou IaaS, além de instalar o SSMA, 
+o SSMA Extension pack precisa ser instalado no computador que está executando o SQL Server
+
+Abra SSMA e crie um novo projeto
+especifique o nome e a localização do projeto. 
+Certifique-se de selecionar o menu suspenso Migrar para como SQL Azure 
+como a plataforma de destino e clique em OK
+
+Clique em Conectar ao Oracle
+Insira as informações do servidor Oracle e clique em Conectar
+
+Depois que a conexão for estabelecida, todos os esquemas
+e objetos Oracle são listados no Oracle Metadata Explorer
+
+Clique no esquema que deseja converter para mostrar os 
+detalhes do esquema no painel de detalhes direito
+
+Clique em Mapeamento de tipo para confirmar o mapeamento de tipo de dados de origem para destino. 
+Use o botão Editar para fazer alterações (se necessário) no mapeamento padrão mostrado.
+
+Expanda Esquemas e selecione o esquema que deseja migrar. Use o botão Create Report na faixa superior 
+ou clique com o botão direito no nome do esquema e escolha Create Report para gerar o relatório de migração SSMA.
+
+Assim que o relatório for criado, o relatório HTML será aberto em um navegador da web
+você pode salvar o projeto se quiser fazer alguma análise offline. Escolha Salvar Projeto no menu Arquivo.
+
+Isso abrirá a caixa de diálogo Salvar Metadados , que permitirá que você selecione os esquemas 
+sobre os quais deseja informações off-line para que, se você compartilhar o projeto SSMA com outras pessoas, 
+elas não precisem se conectar ao sistema de origem para análise off-line. Selecione os esquemas desejados e escolha Salvar .
+
+Depois que o relatório for gerado, a próxima etapa é Converter o esquema, que criará o código de esquema correspondente para 
+o ambiente de destino - banco de dados SQL Azure. Clique em Conectar ao SQL Azure na faixa superior para se conectar ao seu ambiente de destino.
+
+Especifique os detalhes de conexão do banco de dados SQL Azure na caixa de diálogo
+
+Assim que a conexão for bem-sucedida, todos os objetos no SQL Azure DB serão listados no SQL Azure Metadata Explorer
+
+Selecione o esquema que deseja converter no Oracle Metadata Explorer e clique no botão Converter Esquema na faixa superior 
+ou clique com o botão direito no esquema e escolha Converter Esquema
+
+Depois que o esquema for convertido, os objetos convertidos serão listados no SQL Azure Metadata Explorer. 
+Os esquemas acabam de ser criados no SSMA, mas não são realmente persistidos no banco de dados SQL Azure de destino neste ponto.
+
+O script de criação de esquema para o banco de dados SQL Azure de destino agora pode ser salvo neste ponto para referência futura 
+ou leitura offline. Selecione os esquemas no SQL Azure Metadata Explorer para os quais deseja salvar o script, clique com o 
+botão direito do mouse em Esquemas e escolha Salvar como Script
+
+Agora que o esquema foi convertido no banco de dados SQL do Azure de destino, o mesmo pode ser persistido no sistema de destino. 
+No SQL Azure Metadata Explorer, escolha os esquemas que você deseja confirmar e os 2 assemblies que começam com o nome SSMA4Oracle, 
+clique com o botão direito no nome do banco de dados e escolha Sincronizar com Banco de Dados
+
+Isso abrirá a caixa de diálogo que mostra as diferenças entre os metadados locais e os bancos de dados. C
+lique no botão Hide Equal Objects na parte superior para ver apenas a diferença.
+
+Clique em OK para iniciar a sincronização com o banco de dados
+
+Depois que a operação Sincronizar com Banco de Dados for concluída, conecte-se ao BD SQL do Azure de destino
+usando uma ferramenta diferente, como SSMS. Expandir os diferentes objetos no banco de dados agora deve listar 
+todos os novos objetos que foram convertidos do Oracle.
+
+Agora que o esquema foi criado no banco de dados SQL do Azure de destino, podemos prosseguir com a migração 
+dos dados reais do Oracle. Em Oracle Metadata Explorer, selecione o esquema para o qual deseja migrar os dados. 
+Clique com o botão direito no nome do esquema e escolha Migrar Dados 
+
+Assim que a migração de dados for concluída, um Relatório de Migração de Dados é mostrado listando 
+todas as tabelas e o total de linhas que foram migradas.
+
+Clique em Salvar Relatório se quiser uma cópia offline do Relatório de Migração de Dados, que pode ser salvo em formato CSV
+
+Depois que a migração de dados for concluída, conecte-se ao BD SQL do Azure de destino usando uma ferramenta diferente, 
+como SSMS, e consulte uma tabela para confirmar se os dados foram transferidos com êxito do Oracle para o BD SQL do Azure.
